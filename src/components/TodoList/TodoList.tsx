@@ -1,4 +1,4 @@
-import {Button, Checkbox, List, message, Popconfirm, Space, Typography} from 'antd';
+import {Button, Checkbox, List, Space, Typography} from 'antd';
 import {FC} from 'react';
 import {ITodo} from "../../types/types";
 
@@ -6,10 +6,6 @@ interface TodoListProps {
     todos: ITodo[];
     onCheck: (id: number) => void;
     onRemove: (id: number) => void;
-}
-
-function confirm(e: any) {
-    message.success('Todo successfully deleted');
 }
 
 const TodoList: FC<TodoListProps> = ({todos, onCheck, onRemove}) => {
@@ -29,16 +25,9 @@ const TodoList: FC<TodoListProps> = ({todos, onCheck, onRemove}) => {
                                 </Typography.Text>
                             </Space>
                         </div>
-                        <Popconfirm
-                            title="Are you sure to delete this todo?"
-                            onConfirm={confirm}
-                            okText="Yes"
-                            cancelText="No"
-                        >
-                            <Button danger type="link">
-                                Delete
-                            </Button>
-                        </Popconfirm>
+                        <Button danger type="link" onClick={() => onRemove(todo.id)}>
+                            Delete
+                        </Button>
                     </Space>
                 </List.Item>
             )}
