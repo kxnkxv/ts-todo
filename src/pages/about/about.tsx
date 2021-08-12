@@ -7,6 +7,7 @@ const About: FC = () => {
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
             allowFullScreen
+            title="Never Gonna Give You Up"
             style={{
                 flex: 1,
                 width: "100%",
