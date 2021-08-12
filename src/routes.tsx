@@ -31,7 +31,7 @@ const Routes: FC = () => {
         <Suspense fallback={<Loading/>}>
             <Switch>
                 <Route exact path="/" component={Todos}/>
-                <Route exact path="/about" component={About}/>
+                <Route path="/about" component={About}/>
                 <Route path="*" component={NotFound}/>
             </Switch>
         </Suspense>
