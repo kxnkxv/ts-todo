@@ -1,4 +1,4 @@
-import {Checkbox, List, Space, Button, Typography, Popconfirm, message} from 'antd';
+import {Button, Checkbox, List, message, Popconfirm, Space, Typography} from 'antd';
 import {FC} from 'react';
 import {ITodo} from "../../types/types";
 
@@ -35,9 +35,9 @@ const TodoList: FC<TodoListProps> = ({todos, onCheck, onRemove}) => {
                             okText="Yes"
                             cancelText="No"
                         >
-                        <Button danger type="link">
-                            Delete
-                        </Button>
+                            <Button danger type="link">
+                                Delete
+                            </Button>
                         </Popconfirm>
                     </Space>
                 </List.Item>
