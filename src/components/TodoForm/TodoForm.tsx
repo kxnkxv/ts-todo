@@ -13,10 +13,6 @@ const TodoForm: FC<TodoFormProps> = ({addTodo}) => {
     const onFinish = (values: ITodo) => {
         addTodo({title: values.title, checked: false, id: Date.now()})
         message.success("Todo added")
-        onReset()
-    };
-
-    const onReset = () => {
         form.resetFields();
         inputRef.current!.focus({
             cursor: 'start',
@@ -35,11 +31,7 @@ const TodoForm: FC<TodoFormProps> = ({addTodo}) => {
                     <Button type="primary" htmlType="submit">
                         Add
                     </Button>
-                    <Button htmlType="button" onClick={onReset}>
-                        Clear
-                    </Button>
                 </Space>
-
             </Form.Item>
         </Form>
     );
