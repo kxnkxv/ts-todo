@@ -50,16 +50,16 @@ const TodoList: FC = observer(() => {
                       }}>
                         Delete
                       </Button>,
-                      ]}
-                >
-                  <Card.Meta
-                    title={[
-                      <Row
-                        align="middle"
-                        justify="space-between"
-                      >
-                        {
-                          todo.checked
+                    ]}
+              >
+                <Card.Meta
+                  title={[
+                    <Row
+                      align="middle"
+                      justify="space-between"
+                    >
+                      {
+                        todo.checked
                             ? <>
                               <Col>
                                 <Typography.Title delete level={4}>{todo.title}</Typography.Title>
