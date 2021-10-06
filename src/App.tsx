@@ -1,12 +1,12 @@
 import {FC} from "react";
-import Layout from "./components/Layout/Layout";
+import CustomLayout from "./components/Layout/Layout";
 import Routes from "./routes";
 
 const App: FC = () => {
     return (
-        <Layout>
+        <CustomLayout>
             <Routes/>
-        </Layout>
+        </CustomLayout>
     );
 }
 

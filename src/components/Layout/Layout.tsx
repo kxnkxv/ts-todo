@@ -1,51 +1,41 @@
 import {FC} from 'react';
-import {Col, Divider, Row} from "antd";
-import Navbar from "../Navbar/Navbar";
+import {Layout, Menu} from "antd";
+import {NavLink} from "react-router-dom";
 
-const Layout: FC = ({children}) => {
+const { Header, Footer, Content } = Layout;
+
+const CustomLayout: FC = ({children}) => {
     return (
-        <>
-            <Row
-                gutter={[25, 25]}
-                justify="center"
-                align="top"
-            >
-                <Col span={24}>
-                    <Navbar/>
-                </Col>
-            </Row>
-            <Row
-                gutter={[25, 25]}
-                justify="center"
-                style={{
-                    flex: 1,
-                    marginTop: 25,
-                    marginBottom: 25,
-                }}
-            >
-                <Col span={22}>
-                    {children}
-                </Col>
-            </Row>
-            <Row
-                gutter={[25, 25]}
-                justify="center"
-                align="bottom"
-            >
-                <Col span={24}>
-                    <Divider/>
-                    <footer
-                        style={{
-                            textAlign: 'center',
-                            marginBottom: 25,
-                        }}
-                    >
-                        <a href="http://vk.com/kxnkxv">kxnkxv</a>, 2021
-                    </footer>
-                </Col>
-            </Row>
-        </>
+      <Layout>
+        <Header
+          style={{
+            background: "#fff"
+          }}
+        >
+          <Menu theme="light" mode="horizontal">
+            <Menu.Item key="1">
+              <NavLink to="/">todos</NavLink>
+            </Menu.Item>
+            <Menu.Item key="2">
+              <NavLink to="/about">about</NavLink>
+            </Menu.Item>
+          </Menu>
+        </Header>
+        <Content
+          style={{
+            paddingTop: 25,
+            paddingLeft: 25,
+            paddingBottom: 25,
+            paddingRight: 25,
+          }}
+        >
+          {children}
+        </Content>
+        <Footer>
+          <a href="https://vk.com/kxnkxv">kxnkxv</a>, 2021
+        </Footer>
+      </Layout>
     );
 };
 
-export default Layout;
+export default CustomLayout;
