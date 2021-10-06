@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Button, Card, DatePicker, Form, Input, Space} from "antd";
 import {ITodo} from "../../types/types";
-import {uuid} from "uuidv4";
+import {v4 as uuidv4} from "uuid";
 import TodoStore from "../../store/todo/todo"
 
 const TodoForm: FC = () => {
@@ -10,7 +10,7 @@ const TodoForm: FC = () => {
 
   const onFinish = (values: ITodo) => {
     TodoStore.addTodo({
-      id: uuid(),
+      id: uuidv4(),
       title: values.title,
       checked: false,
       date: values.date,
