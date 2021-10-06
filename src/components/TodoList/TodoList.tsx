@@ -1,36 +1,55 @@
-import {Button, Card, Col, Empty, message, Row, Space, Typography} from 'antd';
-import {FC} from 'react';
+import {Button, Card, Col, DatePicker, Empty, Input, Popconfirm, Row, Space, Typography} from 'antd';
+import React, {FC, useState} from 'react';
 import TodoStore from "../../store/todo/todo"
-import moment from "moment";
 import {observer} from "mobx-react-lite";
+import moment from "moment";
 
 const TodoList: FC = observer(() => {
-    return (
-      <Space direction="vertical" style={{width: "100%", height: "100%"}}>
-        {
-          TodoStore.todos.length !== 0
-            ? TodoStore.todos.map((todo) => {
-              return (
-                <Card key={todo.id}
-                      style={{width: "100%", marginTop: 16}}
-                      actions={[
-                        <Button type="link" onClick={() => message.error("Editing in develop")}>
+  const [tempTitle, setTempTitle] = useState<string>()
+  const [tempDescription, setTempDescription] = useState<string>()
+  const [tempDate, setTempDate] = useState<any>()
+
+  return (
+    <Space direction="vertical" style={{width: "100%", height: "100%"}}>
+      {
+        TodoStore.todos.length !== 0
+          ? TodoStore.todos.map((todo) => {
+            return (
+              <Card key={todo.id}
+                    style={{width: "100%", marginTop: 16}}
+                    actions={[
+                      <Popconfirm
+                        title={[
+                          <Space direction="vertical">
+                            <Input defaultValue={todo.title} onChange={(event) => setTempTitle(event.target.value)}/>
+                            <Input.TextArea defaultValue={todo.description}
+                                            onChange={(event) => setTempDescription(event.target.value)}/>
+                            <DatePicker defaultValue={moment(todo.date)} onChange={(date) => setTempDate(date)}/>
+                          </Space>
+                        ]}
+                        // @ts-ignore
+                        onConfirm={() => TodoStore.editTodo(todo.id, tempTitle, tempDescription, tempDate)}
+                        okText="Save"
+                        cancelText="Cancel"
+                      >
+                        <Button type="link" key={todo.id}>
                           Edit
-                        </Button>,
-                        <Button type="link" onClick={() => {
-                          TodoStore.markDone(todo.id)
-                        }}>
-                          {
-                            todo.checked
-                              ? "Mark undone"
-                              : "Mark done"
-                          }
-                        </Button>,
-                        <Button danger type="link" onClick={() => {
-                          TodoStore.deleteTodo(todo.id)
-                        }}>
-                          Delete
-                        </Button>,
+                        </Button>
+                      </Popconfirm>,
+                      <Button key={todo.id} type="link" onClick={() => {
+                        TodoStore.markDone(todo.id)
+                      }}>
+                        {
+                          todo.checked
+                            ? "Mark undone"
+                            : "Mark done"
+                        }
+                      </Button>,
+                      <Button key={todo.id} danger type="link" onClick={() => {
+                        TodoStore.deleteTodo(todo.id)
+                      }}>
+                        Delete
+                      </Button>,
                       ]}
                 >
                   <Card.Meta
@@ -47,7 +66,7 @@ const TodoList: FC = observer(() => {
                               </Col>
                               <Col>
                                 <Typography.Text delete>
-                                  Start: <b>{moment(todo.date)}</b>
+                                  {/*Start: <b>{todo.date}</b>*/}
                                 </Typography.Text>
                               </Col>
                             </>
@@ -57,7 +76,7 @@ const TodoList: FC = observer(() => {
                               </Col>
                               <Col>
                                 <Typography.Text>
-                                  Start: <b>{todo.date}</b>
+                                  {/*Start: <b>{todo.date}</b>*/}
                                 </Typography.Text>
                               </Col>
                             </>

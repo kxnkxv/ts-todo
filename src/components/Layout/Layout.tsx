@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {Layout, Menu} from "antd";
+import {Divider, Layout, Menu} from "antd";
 import {NavLink} from "react-router-dom";
 
 const {Header, Footer, Content} = Layout;
@@ -32,6 +32,7 @@ const CustomLayout: FC = ({children}) => {
         {children}
       </Content>
       <Footer>
+        <Divider/>
         <a href="https://vk.com/kxnkxv">kxnkxv</a>, 2021
       </Footer>
     </Layout>

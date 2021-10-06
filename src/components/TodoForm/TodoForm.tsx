@@ -7,7 +7,6 @@ import TodoStore from "../../store/todo/todo"
 const TodoForm: FC = () => {
   const [form] = Form.useForm();
   const title = React.useRef<any>(null);
-
   const onFinish = (values: ITodo) => {
     TodoStore.addTodo({
       id: uuidv4(),
@@ -66,7 +65,7 @@ const TodoForm: FC = () => {
             placeholder="Write TODO description..."
           />
         </Form.Item>
-        <Form.Item name="startDate" rules={[{required: true}]} label="Start date">
+        <Form.Item name="date" rules={[{required: true}]} label="Start date">
           <DatePicker/>
         </Form.Item>
         <Form.Item>

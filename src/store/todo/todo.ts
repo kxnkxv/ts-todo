@@ -1,28 +1,28 @@
-import {autorun, makeAutoObservable} from "mobx";
+import {makeAutoObservable} from "mobx";
 import {ITodo} from "../../types/types";
 import {message} from "antd";
 
 class TodoStore {
-  todos: ITodo[] = JSON.parse(localStorage.getItem("todos") as string) || [];
+  todos: ITodo[] = [];
 
   constructor() {
     makeAutoObservable(this);
-    autorun(
-      () => {
-        if (this.todos.length !== 0) {
-          localStorage.setItem("todos", JSON.stringify(this.todos))
-        }
-      }
-    )
   }
 
   markDone = (id: string) => {
-    this.todos = this.todos.map(todo => {
-      if (todo.id === id) {
-        todo.checked = !todo.checked
-      }
-      return todo
-    })
+    const todo = this.todos.find(todo => todo.id === id)
+    if (todo) {
+      todo.checked = !todo.checked
+    }
+  }
+
+  editTodo = (id: string, title: string, description: string, date: any) => {
+    const todo = this.todos.find(todo => todo.id === id)
+    if (todo) {
+      todo.title = title
+      todo.description = description
+      todo.date = date
+    }
   }
 
   deleteTodo = (id: string) => {
@@ -30,8 +30,12 @@ class TodoStore {
   }
 
   addTodo(newTodo: ITodo) {
-    this.todos = this.todos.concat(newTodo)
+    this.todos.push(newTodo)
     message.success("New TODO added")
+  }
+
+  getTodo(id: string) {
+    this.todos.find(todo => todo.id === id)
   }
 }
 
