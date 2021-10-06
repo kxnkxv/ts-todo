@@ -8,10 +8,10 @@ import "./index.css"
 import "normalize.css"
 
 ReactDOM.render(
-    <Router>
-        <App/>
-    </Router>,
-    document.getElementById('root')
+  <Router>
+    <App/>
+  </Router>,
+  document.getElementById('root')
 );
 
 reportWebVitals();

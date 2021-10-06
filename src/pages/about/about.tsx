@@ -2,7 +2,7 @@ import {FC} from 'react';
 import {Card, Typography} from "antd";
 
 const About: FC = () => {
-  const { Title, Paragraph, Text, Link } = Typography;
+  const {Title, Paragraph, Text, Link} = Typography;
 
   return (
     <Card>

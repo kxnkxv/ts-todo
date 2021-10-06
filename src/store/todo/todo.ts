@@ -30,7 +30,7 @@ class TodoStore {
   }
 
   addTodo(newTodo: ITodo) {
-        this.todos = this.todos.concat(newTodo)
+    this.todos = this.todos.concat(newTodo)
     message.success("New TODO added")
   }
 }
